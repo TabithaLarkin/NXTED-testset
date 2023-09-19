@@ -12,11 +12,11 @@ final class HourCalculatorTest extends TestCase
     private function calculateInternal(
         int $totalLines,
         int $maxPerHour,
-        int $sleepRecovery,
         int $reduction,
+        int $sleepRecovery,
         int $expected
     ): void {
-        $calc = new HourCalculator($totalLines, $maxPerHour, $sleepRecovery, $reduction);
+        $calc = new HourCalculator($totalLines, $maxPerHour, $reduction, $sleepRecovery);
 
         $this->assertSame($calc->calculate(), $expected);
     }
@@ -67,5 +67,10 @@ final class HourCalculatorTest extends TestCase
     public function testSmallRecoveryEdge(): void
     {
         $this->calculateInternal(55, 10, 1, 1, 10);
+    }
+
+    public function testHuge(): void
+    {
+        $this->calculateInternal(1000, 10, 1, 10, 197);
     }
 }

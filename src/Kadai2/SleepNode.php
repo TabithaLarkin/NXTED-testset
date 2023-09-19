@@ -4,36 +4,26 @@ declare(strict_types=1);
 
 namespace Nxted\Kadai2;
 
-class SleepNode
+class SleepNode extends CalculationNode
 {
     private WorkNode $worker;
 
     public function __construct(
         int $remainingLines,
-        int $maxPerHour,
         int $currPerHour,
-        int $reduction,
-        int $sleepRecovery,
-        private readonly int $sleepLength
+        private readonly NodeFactory $nodeFactory
     ) {
-        $currPerHour = min(($currPerHour > 0 ? $currPerHour : 0) + $sleepRecovery, $maxPerHour);;
+        $currPerHour = min(($currPerHour > 0 ? $currPerHour : 0) + $nodeFactory->sleepRecovery, $nodeFactory->maxPerHour);;
 
         // Always create a worker as we can't end on a sleep.
-        $this->worker = new WorkNode(
-            $remainingLines,
-            $maxPerHour,
-            $currPerHour,
-            $reduction,
-            $sleepRecovery,
-            $sleepLength
-        );
+        $this->worker = $nodeFactory->createWorkNode($remainingLines, $currPerHour);
     }
 
     /**
      * Traverses the tree to find the branch with the lowest value.
      */
-    public function getOptimisedHours()
+    protected function traverseOptimisedHours(): int
     {
-        return $this->worker->getOptimisedHours() + $this->sleepLength;
+        return $this->worker->getOptimisedHours() + $this->nodeFactory->sleepLength;
     }
 }

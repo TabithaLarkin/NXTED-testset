@@ -18,7 +18,8 @@ class HourCalculator
 
     public function calculate(): int
     {
-        $parentNode = new WorkNode($this->totalLines, $this->maxPerHour, $this->maxPerHour, $this->reduction, $this->sleepRecovery, $this->sleepLength);
+        $factory = new NodeFactory($this->totalLines, $this->maxPerHour, $this->reduction, $this->sleepRecovery, $this->sleepLength);
+        $parentNode = $factory->createWorkNode($this->totalLines, $this->maxPerHour);
 
         return $parentNode->getOptimisedHours();
     }
