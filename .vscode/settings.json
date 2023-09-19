@@ -1,6 +1,0 @@
-{
-  "[php]": {
-    "editor.tabSize": 4
-  },
-  "intelephense.format.braces": "psr12"
-}
