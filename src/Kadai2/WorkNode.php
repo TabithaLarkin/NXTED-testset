@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Nxted\Kadai2;
 
-
 class WorkNode extends CalculationNode
 {
     private SleepNode | null $sleeper;
