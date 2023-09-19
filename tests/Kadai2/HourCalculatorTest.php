@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Kadai2\Tests;
+namespace Tests;
 
-use Kadai2\HourCalculator;
+use Nxted\Kadai2\HourCalculator;
 use PHPUnit\Framework\TestCase;
 
 final class HourCalculatorTest extends TestCase
@@ -36,6 +36,9 @@ final class HourCalculatorTest extends TestCase
         $this->calculateInternal(60, 30, 10, 30, 3);
     }
 
+    // [ 10  9   8   7   6   5   4   3   2   1]
+    // 55
+
     public function testSmallInputsExact(): void
     {
         $this->calculateInternal(55, 10, 1, 10, 10);
@@ -44,5 +47,25 @@ final class HourCalculatorTest extends TestCase
     public function testSmallInputsPlusOne(): void
     {
         $this->calculateInternal(56, 10, 1, 10, 10);
+    }
+
+    public function testSmallInputsEdge(): void
+    {
+        $this->calculateInternal(61, 10, 1, 10, 10);
+    }
+
+    public function testFullInputsEdge(): void
+    {
+        $this->calculateInternal(30, 10, 10, 10, 9);
+    }
+
+    public function testHalfInputsEdge(): void
+    {
+        $this->calculateInternal(30, 10, 5, 10, 7);
+    }
+
+    public function testSmallRecoveryEdge(): void
+    {
+        $this->calculateInternal(55, 10, 1, 1, 10);
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
-require_once __DIR__ . '/Kadai2/HourCalculator.php';
+namespace Nxted;
 
-use Kadai2\HourCalculator;
+require "vendor/autoload.php";
+
+use Nxted\Kadai2\HourCalculator;
 
 function tryCalculate()
 {

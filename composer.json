@@ -4,12 +4,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Kadai2\\": "src/Kadai2"
+            "Nxted\\": "src/",
+            "Nxted\\Kadai2\\": "src/Kadai2/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Kadai2\\Tests\\": "tests/Kadai2"
+            "Tests\\": "tests/"
         }
     }
 }
