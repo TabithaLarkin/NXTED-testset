@@ -14,17 +14,16 @@ function tryCalculate(): bool
     $input = explode(' ', trim(fgets(STDIN)));
 
     if (count($input) !== 4) {
-        echo "入力は四つではありません。";
+        echo "入力は四つではありません。\n";
 
         return false;
     }
 
-    for ($i = 1; $i < count($input); $i++) {
-        if (!is_numeric($input[$i])) {
-            echo "入力「{$input[$i]}」は数値ではありません。";
-
-            return false;
-        }
+    try {
+        InputHelper::checkNumericInput($input);
+    } catch (InvalidArgumentException $e) {
+        echo $e->getMessage();
+        return false;
     }
 
     try {

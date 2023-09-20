@@ -55,4 +55,11 @@ class ItemPricer
 
         return true;
     }
+
+    public function forEachItem(callable $fn): void
+    {
+        foreach ($this->itemMap->values() as $item) {
+            $fn($item);
+        }
+    }
 }
