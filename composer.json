@@ -12,5 +12,8 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
+    },
+    "require": {
+        "php-ds/php-ds": "^1.4"
     }
 }
