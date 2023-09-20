@@ -5,6 +5,7 @@
     "autoload": {
         "psr-4": {
             "Nxted\\": "src/",
+            "Nxted\\Kadai1\\": "src/Kadai1/",
             "Nxted\\Kadai2\\": "src/Kadai2/"
         }
     },

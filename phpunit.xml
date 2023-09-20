@@ -5,6 +5,9 @@
     bootstrap="vendor/autoload.php"
     colors="true">
     <testsuites>
+        <testsuite name="Kadai 1">
+            <directory>tests/Kadai1</directory>
+        </testsuite>
         <testsuite name="Kadai 2">
             <directory>tests/Kadai2</directory>
         </testsuite>

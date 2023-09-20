@@ -96,6 +96,7 @@
 			"extensions": [
 				"bmewburn.vscode-intelephense-client",
 				"DEVSENSE.composer-php-vscode",
+				"github.vscode-github-actions",
 				"ms-azuretools.vscode-docker",
 				"recca0120.vscode-phpunit"
 			]
