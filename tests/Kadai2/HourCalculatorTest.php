@@ -6,6 +6,7 @@ namespace Tests;
 
 use Nxted\Kadai2\HourCalculator;
 use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
 
 final class HourCalculatorTest extends TestCase
 {
@@ -72,5 +73,58 @@ final class HourCalculatorTest extends TestCase
     public function testHuge(): void
     {
         $this->calculateInternal(1000, 10, 1, 10, 197);
+    }
+
+    // Input Validation
+
+    private function validationTest(
+        int $totalLines,
+        int $maxPerHour,
+        int $reduction,
+        int $sleepRecovery
+    ): void {
+        $this->expectException(InvalidArgumentException::class);
+
+        new HourCalculator($totalLines, $maxPerHour, $reduction, $sleepRecovery);
+    }
+
+    public function testValidationTotalLowerLimit(): void
+    {
+        $this->validationTest(0, 10, 1, 10);
+    }
+
+    public function testValidationMaxPerHourLowerLimit(): void
+    {
+        $this->validationTest(1000, 0, 1, 10);
+    }
+
+    public function testValidationReductionLowerLimit(): void
+    {
+        $this->validationTest(1000, 10, 0, 10);
+    }
+
+    public function testValidationRecoveryLowerLimit(): void
+    {
+        $this->validationTest(1000, 10, 10, 0);
+    }
+
+    public function testValidationTotalUpperLimit(): void
+    {
+        $this->validationTest(10000, 10, 1, 10);
+    }
+
+    public function testValidationMaxPerHourUpperLimit(): void
+    {
+        $this->validationTest(1000, 10000, 1, 10);
+    }
+
+    public function testValidationReductionUpperLimit(): void
+    {
+        $this->validationTest(1000, 10, 100, 10);
+    }
+
+    public function testValidationRecoveryUpperLimit(): void
+    {
+        $this->validationTest(1000, 10, 10, 100);
     }
 }

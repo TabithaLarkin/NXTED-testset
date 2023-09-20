@@ -4,9 +4,10 @@ namespace Nxted;
 
 require "vendor/autoload.php";
 
+use InvalidArgumentException;
 use Nxted\Kadai2\HourCalculator;
 
-function tryCalculate()
+function tryCalculate(): bool
 {
     echo "番号を四つ入力してください。\n";
 
@@ -14,23 +15,34 @@ function tryCalculate()
 
     if (count($input) !== 4) {
         echo "入力は四つではありません。";
-        tryCalculate();
-        return;
+
+        return false;
     }
 
     for ($i = 1; $i < count($input); $i++) {
         if (!is_numeric($input[$i])) {
             echo "入力「{$input[$i]}」は数値ではありません。";
-            tryCalculate();
-            return;
+
+            return false;
         }
     }
 
-    $calc = new HourCalculator(...$input);
+    try {
+        $calc = new HourCalculator(...$input);
 
-    echo "{$calc->calculate()}\n";
+        echo "{$calc->calculate()}\n";
+    } catch (InvalidArgumentException $e) {
+        echo "{$e->getMessage()}\n";
+        return false;
+    }
+
+    return true;
 }
 
-tryCalculate();
+$success = false;
+
+while (!$success)
+    $success = tryCalculate();
+
 
 exit();
