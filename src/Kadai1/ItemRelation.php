@@ -11,8 +11,11 @@ class ItemRelation
     {
     }
 
-    public function updatePrice(int $newPrice): void
+    public function updatePrice(int $newPrice, array $updateStack): void
     {
-        $this->item->updatePrice($newPrice + $this->difference);
+        $itemPrice = $this->item->getPrice();
+        if ($this->item->getPrice() === null || $itemPrice - $newPrice < $this->difference) {
+            $this->item->updatePrice($newPrice + $this->difference, $updateStack);
+        }
     }
 }

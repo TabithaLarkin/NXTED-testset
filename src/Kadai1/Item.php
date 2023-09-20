@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Nxted\Kadai1;
 
+use RuntimeException;
+
 class Item
 {
     private int | null $price = null;
@@ -14,12 +16,16 @@ class Item
         return $this->price;
     }
 
-    public function updatePrice(int $newPrice): void
+    public function updatePrice(int $newPrice, array $updateStack = []): void
     {
+        if (in_array($this, $updateStack))
+            throw new RuntimeException("Circular Reference Detected.");
+
         $this->price = $newPrice;
+        array_push($updateStack, $this);
 
         foreach ($this->relations as $relation) {
-            $relation->updatePrice($this->price);
+            $relation->updatePrice($this->price, $updateStack);
         }
     }
 
