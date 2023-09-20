@@ -1,0 +1,49 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Run phpunit tests
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v2
+
+      # Install Dependencies
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: /tmp/composer-cache
+          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+      - uses: php-actions/composer@v6
+        with:
+          php_version: "8.2"
+          version: "2.5.8"
+          working_dir: "src"
+
+      # Run tests
+
+      - uses: php-actions/phpunit@v3
+        with:
+          configuration: "phpunit.xml"
+          php_version: 8.2
+          version: 10
+          log_junit: 'test-results/junit.xml'
+
+      - name: Test Report
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        # run this step even if previous step failed
+        if: success() || failure()
+        with:
+          files: |
+            test-results/**/*.xml
+            test-results/**/*.trx
+            test-results/**/*.json
