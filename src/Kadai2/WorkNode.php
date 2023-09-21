@@ -6,8 +6,8 @@ namespace Nxted\Kadai2;
 
 class WorkNode extends CalculationNode
 {
-    private SleepNode | null $sleeper;
-    private WorkNode | null $worker;
+    private ?SleepNode $sleeper;
+    private ?WorkNode $worker;
 
     public function __construct(
         int $remainingLines,

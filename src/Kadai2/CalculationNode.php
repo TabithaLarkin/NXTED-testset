@@ -6,7 +6,7 @@ namespace Nxted\Kadai2;
 
 abstract class CalculationNode
 {
-    private int | null $cachedOptimisedValue = null;
+    private ?int $cachedOptimisedValue = null;
 
     public function getOptimisedHours(): int
     {

@@ -34,24 +34,30 @@ class ItemPricer
         return $item;
     }
 
-    public function addRelation(int $relation, int $target, int $difference): void
+    public function addRelation(int $target, int $relation, int $difference): void
     {
         $item = $this->getItem($target);
         $related = $this->getItem($relation);
 
-        $item->addRelation(new ItemRelation($related, $difference));
+        $item->addRelation($related, $difference);
     }
 
     public function evaluatePrices(): bool
     {
         try {
+            $root = $this->itemMap->first()->value;
+            $maxVal = $root->calcHighestValueRelation();
+
+            // Calculate all maximum relationship values
             foreach ($this->itemMap->values() as $item) {
-                // If the item does not yet have a price set, then initialise to 1.
-                // Relationships between other items will then update the prices of other items.
-                if ($item->getPrice() === null) {
-                    $item->updatePrice(1);
+                $currVal = $item->calcHighestValueRelation();
+                if ($currVal > $maxVal) {
+                    $root = $item;
+                    $maxVal = $currVal;
                 }
             }
+            // Update the price of the highest value child
+            $root->updatePrice($maxVal + 1);
         } catch (RuntimeException) {
             return false;
         }

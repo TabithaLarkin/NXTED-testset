@@ -13,6 +13,26 @@ final class ItemPricerTest extends TestCase
 
     // Provided Test cases
 
+    public function testSample1(): void
+    {
+        $pricer = new ItemPricer(4);
+
+        $pricer->addRelation(2, 1, 100);
+        $pricer->addRelation(3, 2, -200);
+        $pricer->addRelation(4, 2, 400);
+        $pricer->addRelation(4, 3, 300);
+
+        $pricer->evaluatePrices();
+
+        $this->assertSame($pricer->getItem(1)->getPrice(), 1);
+
+        $this->assertSame($pricer->getItem(2)->getPrice(), 101);
+
+        $this->assertSame($pricer->getItem(3)->getPrice(), 201);
+
+        $this->assertSame($pricer->getItem(4)->getPrice(), 501);
+    }
+
     public function testSample2(): void
     {
         $pricer = new ItemPricer(3);
@@ -91,7 +111,7 @@ final class ItemPricerTest extends TestCase
 
         $this->assertSame($pricer->getItem(2)->getPrice(), 101);
 
-        $this->assertSame($pricer->getItem(3)->getPrice(), 1);
+        $this->assertSame($pricer->getItem(3)->getPrice(), 201);
 
         $this->assertSame($pricer->getItem(4)->getPrice(), 401);
     }

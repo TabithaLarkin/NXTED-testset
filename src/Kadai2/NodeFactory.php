@@ -33,12 +33,12 @@ class NodeFactory
         $this->workNodeCache->put($key, $node);
     }
 
-    private function getCachedSleepNode(string $key): SleepNode | null
+    private function getCachedSleepNode(string $key): ?SleepNode
     {
         return $this->sleepNodeCache->get($key, null);
     }
 
-    private function getCachedWorkNode(string $key): WorkNode | null
+    private function getCachedWorkNode(string $key): ?WorkNode
     {
         return $this->workNodeCache->get($key, null);
     }
