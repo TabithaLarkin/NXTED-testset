@@ -115,4 +115,18 @@ final class ItemPricerTest extends TestCase
 
         $pricer->addRelation(2, 3, 100);
     }
+
+    public function testLimitItemCountTop(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ItemPricer(2000);
+    }
+
+    public function testLimitItemCountBottom(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ItemPricer(1);
+    }
 }

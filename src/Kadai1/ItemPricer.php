@@ -15,6 +15,9 @@ class ItemPricer
 
     public function __construct(int $itemCount)
     {
+        if ($itemCount > 1000  || $itemCount < 2)
+            throw new InvalidArgumentException("アイテムの数が２から１０００までではありません。");
+
         $this->itemMap = new Map();
         for ($i = 0; $i < $itemCount; $i++) {
             // 1 indexed ids
