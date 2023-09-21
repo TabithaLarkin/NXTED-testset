@@ -11,5 +11,8 @@
         <testsuite name="Kadai 2">
             <directory>tests/Kadai2</directory>
         </testsuite>
+        <testsuite name="Kadai 3">
+            <directory>tests/Kadai3</directory>
+        </testsuite>
     </testsuites>
 </phpunit>
