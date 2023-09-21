@@ -36,7 +36,7 @@ final class ItemTest extends TestCase
         // Nest item
         $leaf1->addRelation($leaf3, 200);
 
-        $this->assertSame($baseItem->calcHighestValueRelation(), 300);
+        $this->assertSame(300, $baseItem->calcHighestValueRelation());
     }
 
     public function testMaxValCalcCircular(): void
@@ -65,7 +65,7 @@ final class ItemTest extends TestCase
 
         $baseItem->updatePrice(101);
 
-        $this->assertSame($baseItem->getPrice(), 101);
-        $this->assertSame($leaf1->getPrice(), 1);
+        $this->assertSame(101, $baseItem->getPrice());
+        $this->assertSame(1, $leaf1->getPrice());
     }
 }

@@ -24,13 +24,13 @@ final class ItemPricerTest extends TestCase
 
         $pricer->evaluatePrices();
 
-        $this->assertSame($pricer->getItem(1)->getPrice(), 1);
+        $this->assertSame(1, $pricer->getItem(1)->getPrice());
 
-        $this->assertSame($pricer->getItem(2)->getPrice(), 101);
+        $this->assertSame(101, $pricer->getItem(2)->getPrice());
 
-        $this->assertSame($pricer->getItem(3)->getPrice(), 201);
+        $this->assertSame(201, $pricer->getItem(3)->getPrice());
 
-        $this->assertSame($pricer->getItem(4)->getPrice(), 501);
+        $this->assertSame(501, $pricer->getItem(4)->getPrice());
     }
 
     public function testSample2(): void
@@ -54,9 +54,9 @@ final class ItemPricerTest extends TestCase
 
         $pricer->evaluatePrices();
 
-        $this->assertSame($pricer->getItem(1)->getPrice(), 1);
+        $this->assertSame(1, $pricer->getItem(1)->getPrice());
 
-        $this->assertSame($pricer->getItem(2)->getPrice(), 101);
+        $this->assertSame(101, $pricer->getItem(2)->getPrice());
     }
 
     public function testSimpleLinkedRelation(): void
@@ -69,13 +69,13 @@ final class ItemPricerTest extends TestCase
 
         $pricer->evaluatePrices();
 
-        $this->assertSame($pricer->getItem(1)->getPrice(), 1);
+        $this->assertSame(1, $pricer->getItem(1)->getPrice());
 
-        $this->assertSame($pricer->getItem(2)->getPrice(), 101);
+        $this->assertSame(101, $pricer->getItem(2)->getPrice());
 
-        $this->assertSame($pricer->getItem(3)->getPrice(), 201);
+        $this->assertSame(201, $pricer->getItem(3)->getPrice());
 
-        $this->assertSame($pricer->getItem(4)->getPrice(), 301);
+        $this->assertSame(301, $pricer->getItem(4)->getPrice());
     }
 
     public function testSimpleSpreadRelation(): void
@@ -88,13 +88,13 @@ final class ItemPricerTest extends TestCase
 
         $pricer->evaluatePrices();
 
-        $this->assertSame($pricer->getItem(1)->getPrice(), 1);
+        $this->assertSame(1, $pricer->getItem(1)->getPrice());
 
-        $this->assertSame($pricer->getItem(2)->getPrice(), 101);
+        $this->assertSame(101, $pricer->getItem(2)->getPrice());
 
-        $this->assertSame($pricer->getItem(3)->getPrice(), 201);
+        $this->assertSame(201, $pricer->getItem(3)->getPrice());
 
-        $this->assertSame($pricer->getItem(4)->getPrice(), 301);
+        $this->assertSame(301, $pricer->getItem(4)->getPrice());
     }
 
     public function testSimpleGroupedRelation(): void
@@ -107,13 +107,13 @@ final class ItemPricerTest extends TestCase
 
         $pricer->evaluatePrices();
 
-        $this->assertSame($pricer->getItem(1)->getPrice(), 1);
+        $this->assertSame(1, $pricer->getItem(1)->getPrice());
 
-        $this->assertSame($pricer->getItem(2)->getPrice(), 101);
+        $this->assertSame(101, $pricer->getItem(2)->getPrice());
 
-        $this->assertSame($pricer->getItem(3)->getPrice(), 201);
+        $this->assertSame(201, $pricer->getItem(3)->getPrice());
 
-        $this->assertSame($pricer->getItem(4)->getPrice(), 401);
+        $this->assertSame(401, $pricer->getItem(4)->getPrice());
     }
 
     // Validation Tests

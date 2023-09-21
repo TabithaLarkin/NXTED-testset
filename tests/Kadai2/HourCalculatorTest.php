@@ -19,7 +19,7 @@ final class HourCalculatorTest extends TestCase
     ): void {
         $calc = new HourCalculator($totalLines, $maxPerHour, $reduction, $sleepRecovery);
 
-        $this->assertSame($calc->calculate(), $expected);
+        $this->assertSame($expected, $calc->calculate());
     }
 
     public function testProvidedCase1(): void
