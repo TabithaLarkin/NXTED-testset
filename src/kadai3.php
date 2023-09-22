@@ -77,6 +77,8 @@ function calculateBestFit(): void
             $added = tryAddPoint($plot);
         }
     }
+
+    echo "{$plot->calculateLeastSquare()}\n";
 }
 
 calculateBestFit();
