@@ -4,7 +4,8 @@
     xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/|version|/phpunit.xsd"
     bootstrap="vendor/autoload.php"
     colors="true"
-    displayDetailsOnTestsThatTriggerWarnings="true">
+    displayDetailsOnTestsThatTriggerWarnings="true"
+    failOnRisky="true">
     <testsuites>
         <testsuite name="Kadai 1">
             <directory>tests/Kadai1</directory>
@@ -14,6 +15,9 @@
         </testsuite>
         <testsuite name="Kadai 3">
             <directory>tests/Kadai3</directory>
+        </testsuite>
+        <testsuite name="Kadai 4">
+            <directory>tests/Kadai4</directory>
         </testsuite>
         <testsuite name="Helpers">
             <directory>tests/Helpers</directory>
