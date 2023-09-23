@@ -3,7 +3,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/|version|/phpunit.xsd"
     bootstrap="vendor/autoload.php"
-    colors="true">
+    colors="true"
+    displayDetailsOnTestsThatTriggerWarnings="true">
     <testsuites>
         <testsuite name="Kadai 1">
             <directory>tests/Kadai1</directory>
@@ -14,5 +15,9 @@
         <testsuite name="Kadai 3">
             <directory>tests/Kadai3</directory>
         </testsuite>
+        <testsuite name="Helpers">
+            <directory>tests/Helpers</directory>
+        </testsuite>
+
     </testsuites>
 </phpunit>

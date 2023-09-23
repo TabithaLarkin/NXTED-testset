@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Nxted\Kadai3;
 
-use Ds\Map;
-
 class Plot
 {
     private array $points = [];
