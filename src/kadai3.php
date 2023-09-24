@@ -23,6 +23,8 @@ function tryInitialise()
 
         if ($input[0] < 1)
             throw new InvalidArgumentException("一番目のパラメータは１より大きくなければなりません。");
+        if ($input[0] > 300)
+            throw new InvalidArgumentException("一番目のパラメータは 300 を超えてはなりません。");
 
         return array('plot' => new Plot($input[1]), 'points' => $input[0]);
     } catch (InvalidArgumentException $e) {
@@ -73,7 +75,7 @@ function calculateBestFit(): void
         $added = false;
         while (!$added) {
             $idx = $i + 1;
-            echo "次のルールを入力してください。[{$idx}/{$points}]\n"; // update message
+            echo "次の点を入力してください。[{$idx}/{$points}]\n";
             $added = tryAddPoint($plot);
         }
     }

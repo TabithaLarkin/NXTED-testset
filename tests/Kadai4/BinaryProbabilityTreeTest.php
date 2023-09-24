@@ -31,13 +31,13 @@ final class BinaryProbabilityTreeTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $tree = new BinaryProbabilityTree(101);
+        new BinaryProbabilityTree(101);
     }
 
     public function testRepeatLowLimit(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $tree = new BinaryProbabilityTree(0);
+        new BinaryProbabilityTree(0);
     }
 }

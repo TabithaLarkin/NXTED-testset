@@ -6,6 +6,7 @@ namespace Tests;
 
 use Nxted\Kadai3\Plot;
 use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
 
 final class PlotTest extends TestCase
 {
@@ -54,5 +55,21 @@ final class PlotTest extends TestCase
         $plot->addPoint(21, -1);
 
         $this->assertEquals("24.53558075", number_format($plot->calculateLeastSquare(), 8, '.', ''));
+    }
+
+    // Validation Tests
+
+    public function testTopPenaltyLimit(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new Plot(100001);
+    }
+
+    public function testBottomPenaltyLimit(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new Plot(-1);
     }
 }

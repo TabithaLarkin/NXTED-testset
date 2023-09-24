@@ -28,7 +28,7 @@ function tryInitialise()
     $maxRules = min($input[0] * ($input[0] - 1), 10000);
 
     if ($input[1] > $maxRules)
-      throw new InvalidArgumentException("{$input[1]}は{$maxRules}を超えてはなりません");
+      throw new InvalidArgumentException("{$input[1]}は{$maxRules}を超えてはなりません。");
 
     return array('pricer' => new ItemPricer($input[0]), 'relations' => $input[1]);
   } catch (InvalidArgumentException $e) {

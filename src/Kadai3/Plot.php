@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace Nxted\Kadai3;
 
+use InvalidArgumentException;
+
 class Plot
 {
     private array $points = [];
 
     public function __construct(private int $penaltyValue)
     {
+        if ($penaltyValue > 100000 || $penaltyValue < 0)
+            throw new InvalidArgumentException("一番目のパラメータが 0 から 100000 までではありません。");
     }
 
     public function addPoint(int $x, int $y): void

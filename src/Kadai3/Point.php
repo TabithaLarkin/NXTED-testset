@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Nxted\Kadai3;
 
+use InvalidArgumentException;
+
 class Point
 {
     private array $lines = [];
@@ -11,6 +13,14 @@ class Point
 
     public function __construct(private int $x, private int $y)
     {
+        $this->validatePointRange($x);
+        $this->validatePointRange($y);
+    }
+
+    private function validatePointRange(int $point): void
+    {
+        if ($point > 200000 || $point < -200000)
+            throw new InvalidArgumentException("この点が-200000から200000までではありません。");
     }
 
     public function getX(): int

@@ -16,7 +16,7 @@ class BinaryProbabilityTree
     public function __construct(private int $repeatsAllowed)
     {
         if ($repeatsAllowed > 100 || $repeatsAllowed < 1)
-            throw new InvalidArgumentException("Allowed repeats must be between 1 and 100"); // TODO Update Exception to JP
+            throw new InvalidArgumentException("回連続の数が 1 から 100 までではありません。");
 
         $this->probabilityCache = new Map();
 
@@ -58,7 +58,7 @@ class BinaryProbabilityTree
         if ($depthProbability !== null)
             return $depthProbability;
 
-        // Slight optimisation to solve for the end of a tree where the probability is calculatable
+        // Slight optimisation to solve for the end of a tree where the probability is calculable
         if ($currDepth + $this->repeatsAllowed === $maxDepth)
             $depthProbability = $currProbability * (1 - (1 / (2 ** $this->repeatsAllowed)));
         else

@@ -9,9 +9,7 @@ use Nxted\Kadai4\ProbabilityCalculator;
 
 function tryCalculate(): bool
 {
-    // TODO: Update messages
-
-    echo "番号を二つ入力してください。\n";
+    echo "乱数列の長さと回連続の数を入力してください。\n";
 
     $input = explode(' ', trim(fgets(STDIN)));
 
@@ -31,7 +29,7 @@ function tryCalculate(): bool
     try {
         $calc = new ProbabilityCalculator(...$input);
 
-        echo "{$calc->calclateProbability()}\n";
+        echo "{$calc->calculateProbability()}\n";
     } catch (InvalidArgumentException $e) {
         echo "{$e->getMessage()}\n";
         return false;

@@ -29,7 +29,7 @@ class ItemPricer
     {
         $item = $this->itemMap->get($id, null);
         if ($item === null)
-            throw new InvalidArgumentException("Item not found. {$id}");
+            throw new InvalidArgumentException("アイテムが見つかりません。[{$id}]");
 
         return $item;
     }
