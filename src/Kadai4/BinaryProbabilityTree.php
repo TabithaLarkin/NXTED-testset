@@ -12,6 +12,7 @@ class BinaryProbabilityTree
     private BinaryChoiceNode $rootNode;
     private TreeRootNode $nextTreeNode;
     private Map $probabilityCache;
+    private LeafNode $terminationNode;
 
     public function __construct(private int $repeatsAllowed)
     {
@@ -33,6 +34,11 @@ class BinaryProbabilityTree
         $this->addTerminationLevel($currentNode);
     }
 
+    public function getRepeatsAllowed(): int
+    {
+        return $this->repeatsAllowed;
+    }
+
     private function addChoiceLevel(BinaryChoiceNode $node): BinaryChoiceNode
     {
         $choiceNode = new BinaryChoiceNode();
@@ -42,17 +48,23 @@ class BinaryProbabilityTree
 
     private function addTerminationLevel(BinaryChoiceNode $node): void
     {
-        $node->setChildNodes(new LeafNode(), $this->nextTreeNode);
+        $this->terminationNode = new LeafNode();
+        $node->setChildNodes($this->terminationNode, $this->nextTreeNode);
     }
 
-    private function cacheKey(float $currProbability, int $currDepth): string
+    private function cacheKey(int $currDepth, int $maxDepth): string
     {
-        return "{$currDepth}:{$currProbability}";
+        return "{$currDepth}:{$maxDepth}";
     }
 
-    public function getPositiveOutcomeProbability(float $currProbability, int $currDepth, int $maxDepth): float
+    /**
+     * Calculates the negative outcome.
+     * 
+     * More accurate to sum the larger float numbers, rather than the smaller positive outcomes that can float round to zero.
+     */
+    public function getNegativeOutcomeProbability(int $currDepth, int $maxDepth): float
     {
-        $cacheKey = $this->cacheKey($currProbability, $currDepth);
+        $cacheKey = $this->cacheKey($currDepth, $maxDepth);
         $depthProbability = $this->probabilityCache->get($cacheKey, null);
 
         if ($depthProbability !== null)
@@ -60,9 +72,9 @@ class BinaryProbabilityTree
 
         // Slight optimisation to solve for the end of a tree where the probability is calculable
         if ($currDepth + $this->repeatsAllowed === $maxDepth)
-            $depthProbability = $currProbability * (1 - (1 / (2 ** $this->repeatsAllowed)));
+            $depthProbability = $this->terminationNode->getFailureProbability($maxDepth, $maxDepth);
         else
-            $depthProbability = $this->rootNode->getSuccessProbability($currProbability, $currDepth, $maxDepth);
+            $depthProbability = $this->rootNode->getFailureProbability($currDepth, $maxDepth);
 
         $this->probabilityCache->put($cacheKey, $depthProbability);
 

@@ -23,6 +23,11 @@ class ProbabilityCalculator
 
     public function calculateProbability(): float
     {
-        return $this->tree->getPositiveOutcomeProbability(1, 1, $this->length);
+        // Solve from the deepest part of the tree first so that we can cache results upwards.
+        for ($i = $this->length - $this->tree->getRepeatsAllowed(); $i > 1; $i--) {
+            $this->tree->getNegativeOutcomeProbability($i, $this->length);
+        }
+
+        return 1 - $this->tree->getNegativeOutcomeProbability(1, $this->length);
     }
 }

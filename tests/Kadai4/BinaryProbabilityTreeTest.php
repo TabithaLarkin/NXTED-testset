@@ -15,14 +15,14 @@ final class BinaryProbabilityTreeTest extends TestCase
     {
         $tree = new BinaryProbabilityTree(3);
 
-        $this->assertEquals(0.875, $tree->getPositiveOutcomeProbability(1, 1, 4));
+        $this->assertEquals(0.125, $tree->getNegativeOutcomeProbability(1, 4));
     }
 
     public function testLargeRepeatAllowed(): void
     {
         $tree = new BinaryProbabilityTree(100);
 
-        $this->assertEquals(1, $tree->getPositiveOutcomeProbability(1, 1, 100));
+        $this->assertEquals(0, $tree->getNegativeOutcomeProbability(1, 100));
     }
 
     // Validation Tests

@@ -16,18 +16,18 @@ class BinaryChoiceNode extends ProbabilityTreeNode
     }
 
 
-    public function getSuccessProbability(float $currProbability, int $currDepth, int $maxDepth): float
+    public function getFailureProbability(int $currDepth, int $maxDepth): float
     {
+        // Escape if the float value is equivalent to zero and return zero, or if the max depth has been reached.
         if ($currDepth === $maxDepth)
-            return $currProbability;
+            return 0;
 
         // Update values for next layer
-        $currProbability = $currProbability / 2;
         $currDepth += 1;
 
         // Calculate probabilities for children.
-        $leftProb = $this->leftChild->getSuccessProbability($currProbability, $currDepth, $maxDepth);
-        $rightProb = $this->rightChild->getSuccessProbability($currProbability, $currDepth, $maxDepth);
+        $leftProb = $this->leftChild->getFailureProbability($currDepth, $maxDepth);
+        $rightProb = $this->rightChild->getFailureProbability($currDepth, $maxDepth);
 
         return $leftProb + $rightProb;
     }

@@ -6,5 +6,5 @@ namespace Nxted\Kadai4;
 
 abstract class ProbabilityTreeNode
 {
-    public abstract function getSuccessProbability(float $currProbability, int $currDepth, int $maxDepth): float;
+    public abstract function getFailureProbability(int $currDepth, int $maxDepth): float;
 }

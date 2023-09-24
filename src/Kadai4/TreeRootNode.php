@@ -10,8 +10,8 @@ class TreeRootNode extends ProbabilityTreeNode
     {
     }
 
-    public function getSuccessProbability(float $currProbability, int $currDepth, int $maxDepth): float
+    public function getFailureProbability(int $currDepth, int $maxDepth): float
     {
-        return $this->tree->getPositiveOutcomeProbability($currProbability, $currDepth, $maxDepth);
+        return $this->tree->getNegativeOutcomeProbability($currDepth, $maxDepth);
     }
 }
