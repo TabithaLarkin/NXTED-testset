@@ -10,7 +10,7 @@
 
 https://github.com/codespaces/
 
-Codespacesは自動で開発環境構築する、そしてネットで開発できます。Codespacesは自動でコードの依存関係やツールをインストールできます。
+Codespacesは自動で開発環境構築する、そしてネットで開発できます。Codespacesも自動でコードの依存関係やツールをインストールできます。
 
 ### Visual Studio Code
 
